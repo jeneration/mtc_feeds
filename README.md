@@ -4,9 +4,9 @@ MTC feeds
 The MTC feeds importer module contains all code necessary for the following
 content importers:
 
-  * MTC meetings
-  * MTC map of the month
-  * MTC legacy data
+  * MTC meetings importer
+  * MTC Map Of The Month importer
+  * MTC legacy data importer
 
 These importers depend on the following Drupal 7 contrib modules:
 
