@@ -1,0 +1,64 @@
+<?php
+/**
+ * Install, Update, and Uninstall hooks.
+ */
+
+/**
+ * Implements hook_upate_N().
+ * Updates all old meeting audio/video URLs.
+ */
+function mtc_feeds_update_7002(&$sandbox) {
+  if (!isset($sandbox['progress'])) {
+    // Initialize batch update information.
+    $sandbox['progress'] = 0;
+    $sandbox['last_processed'] = 1;
+    // Get the count by counting Node IDs in Meeting content type.
+    $sandbox['max'] = db_query("SELECT COUNT(DISTINCT n.nid) FROM {node} n INNER JOIN {field_data_field_meeting_recording} fr ON n.nid = fr.entity_id WHERE n.type = 'meeting'")->fetchField();
+    // SELECT COUNT(DISTINCT n.nid) FROM node n INNER JOIN field_data_field_meeting_recording fr ON n.nid = fr.entity_id WHERE n.type = 'meeting'
+  }
+
+  if ($sandbox['max'] > 0) {
+    // As a batch operation, retrieve the nodes with legacy publication data.
+    $limit = 100;
+    $result = db_query_range("SELECT DISTINCT n.nid FROM {node} n INNER JOIN {field_data_field_meeting_recording} fr ON n.nid = fr.entity_id WHERE n.type = 'meeting' AND n.nid > :nid ORDER BY nid", 0, $limit, array(':nid' => $sandbox['last_processed']));
+    // SELECT DISTINCT n.nid FROM node n INNER JOIN field_data_field_meeting_recording fr ON n.nid = fr.entity_id WHERE n.type = 'meeting'
+
+    foreach ($result as $record) {
+      // Loade the current node.
+      $node = node_load($record->nid);
+      $lang = $node->language;
+
+      // Update the URL for the audio/video recording.
+      module_load_include('inc', 'mtc_feeds', 'mtc_feeds_lookup');
+      $lookup = mtc_feeds_get_lookup();
+
+      foreach ($node->field_meeting_recording[$lang] as $key => $value) {
+        $old = $node->field_meeting_recording[$lang][$key]['url'];
+        $old_id = trim(str_replace('http://mtc.granicus.com/MediaPlayer.php?view_id=1&clip_id=', '', $old));
+        if (is_numeric($old_id) && array_key_exists($old_id, $lookup)) {
+          $new_id = $lookup[$old_id];
+          if (is_numeric($new_id)) {
+            // Update the node.
+            $node->field_meeting_recording[$lang][$key]['url'] = 'http://baha.granicus.com/MediaPlayer.php?view_id=1&clip_id=' . $new_id;
+            // Save the node. Note: only one URL per node means this is ok inside the foreach.dr
+            node_save($node);
+          }
+        }
+      }
+
+      // Update our progress information for the batch update.
+      $sandbox['progress']++;
+      $sandbox['last_processed'] = $record->nid;
+    }
+
+    // Indicate our current progress to the batch update system. If there's no
+    // max value then there's nothing to update and we're finished.
+    $sandbox['#finished'] = $sandbox['progress'] / $sandbox['max'];
+
+    if ($sandbox['#finished'] >= 1) {
+      $ret = t("Meeting recording links updated.");
+      return $ret;
+    }
+  }
+}
+ 

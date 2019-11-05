@@ -1,0 +1,496 @@
+<?php
+/**
+ * @file
+ * Feeds exports for the MTC site.
+ */
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function mtc_feeds_ctools_plugin_api($module, $api) {
+  if ($module == 'feeds' && $api == 'feeds_importer_default') {
+    return array('version' => 1);
+  }
+  if ($module == 'feeds_tamper' && $api == 'feeds_tamper_default') {
+    return array('version' => 2);
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function mtc_feeds_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'feeds_tamper') {
+    return 'plugins';
+  }
+}
+
+/**
+ * Address parser. @todo
+ *
+ * @param $string
+ *   A string 'Location' that needs to be split up.
+ *
+ * @return $address
+ *   An array representing the address extracted from the string, including:
+ *   - street (address 1)
+ *   - room (address 2)
+ *   - city
+ *   - state (2 letter abbreviation)
+ *   - zip (5 digit numeric code)
+ *   - country (hard coded to the US)
+ *   - extra (anything else we couldn't determine)
+ *
+ * @see feeds_tamper_mtc_file_callback in plugins/mtc_file.inc
+ */
+function mtc_feeds_parse_address($string){
+  $address = $string;
+
+  return $address;
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function mtc_feeds_node_presave($node) {
+  // Only update imported meetings.
+  if ($node->type == 'meeting') {
+    $lang = $node->language;
+    $beale = FALSE;
+    // The uid is different on each site. MTC = 431, PBA = 2186, etc
+    $author_is_importer = ($node->uid == 431)? TRUE: FALSE;
+
+    // Get the group from the meeting name.
+    $group = trim($node->field_meeting_name[$lang][0]['value']);
+
+    // Update the meeting location ONLY if the room is NOT set to 'Location TBD'.
+    if (empty($node->field_meeting_room[$lang]) ||
+         (!empty($node->field_meeting_room[$lang]) &&
+           trim($node->field_meeting_room[$lang][0]['value']) != 'Location TBD')) {
+
+      // Pull the meeting room out of location field.
+      if (!empty($node->field_meeting_location[$lang]) && $author_is_importer) {
+
+        // Identify keywords that indicae a room.
+        $room_indicators = array('room', 'auditorium', 'cr', 'suite', 'floor');
+        $room_info = array();
+
+        // Split on line-breaks.
+        $loc = explode("\n", $node->field_meeting_location[$lang][0]['value']);
+
+        // If the location field is a single line it's probably a room.
+        if (count($loc) == 1) {
+          $possible_room = trim($loc[0]);
+          $has_room = FALSE;
+          foreach ($room_indicators as $term) {
+            if (strstr(strtolower($possible_room), $term)) {
+              $has_room = TRUE;
+            }
+          }
+          if ($has_room) {
+            $node->field_meeting_room[$lang][0]['value'] = $possible_room;
+          }
+        }
+      }
+
+
+      // Only update the location if the address is not already set.
+      if (empty($node->field_meeting_location_address[$lang][0]['thoroughfare'])) {
+
+        // Set the Clipper Executive Board meeting location.
+        if (($group == 'Clipper Executive Board' ||
+             $group == 'Clipper® Executive Board' ||
+             $group == 'Clipper?? Executive Board')) {
+
+          $node->field_meeting_location_address[$lang]['0'] = array(
+            'thoroughfare' => '344 20th Street',
+            'premise' => '3rd Floor',
+            'dependent_locality' => '',
+            'locality' => 'Oakland',
+            'administrative_area' => 'CA',
+            'postal_code' => '94612',
+            'country' => 'US',
+            'organisation_name' => 'San Francisco Bay Area Rapid Transit District',
+          );
+        }
+
+        // It is not a Clipper meeting...
+        else {
+
+          // Check for a provided location.
+          if (!empty($node->field_meeting_location[$lang]) && $author_is_importer) {
+
+            // If the location field is multiple lines, it's an address.
+            if (count($loc) > 1) {
+              // Set some address defaults.
+              $address_array = array(
+                'thoroughfare' => '', // Street address
+                'premise' => '', // Room + Floor
+                'dependent_locality' => '',
+                'locality' => '', // City
+                'administrative_area' => 'CA', // State
+                'postal_code' => '', // Zip
+                'country' => 'US',
+                'organisation_name' => '',
+              );
+
+              // Clean up whitespace.
+              $loc = array_filter($loc, 'trim');
+
+              // Loop over each line of the address.
+              foreach ($loc as $key => $line) {
+
+                // Determine possible street and zip nums by position.
+                $pos_street_num = substr($line, 0, 3);
+                $pos_zip_num = substr($line, -5);
+
+                // Test the first 3 chars of the first line for a street address.
+                if (is_numeric($pos_street_num)) {
+
+                  // Split street address line at commas.
+                  $line_array = explode(',', $line);
+                  $line_array = array_filter($line_array, 'trim');
+
+                  // We know the begining of this line is a street address.
+                  $address_array['thoroughfare'] = $line_array[0];
+                  // Remove the street address.
+                  unset($line_array[0]);
+
+                  // Count the remaining street parts.
+                  if (!empty($line_array)) {
+                    foreach ($line_array as $key2 => $part) {
+
+                      // Check for room info.
+                      $has_room = FALSE;
+                      foreach ($room_indicators as $term) {
+                        if (!$has_room && strstr(strtolower($part), $term)) {
+                          $has_room = TRUE;
+                          $room_info[] = trim($part);
+                        }
+                      }
+
+                      // Check the end of the line for a zipcode.
+                      $has_zip = FALSE;
+                      $zip = substr($part, -5);
+                      if (is_numeric($zip)) {
+                        $address_array['postal_code'] = $zip;
+                        $has_zip = TRUE;
+                      }
+
+                      if (!$has_room && !$has_zip) {
+                        // Is it safe to assume this is a city?
+                        $address_array['locality'] = $part;
+                      }
+                    }
+
+                  } // End: Count the remaining street parts.
+
+                }
+
+                // Test the last 5 chars for a zipcode.
+                elseif (is_numeric($pos_zip_num)) {
+                  // Zip we already know.
+                  $address_array['postal_code'] = $pos_zip_num;
+
+                  // Remove state since it's always CA.
+                  $city_zip = str_replace('CA', '', $line);
+
+                  // Explode on comma.
+                  $city_zip_parts = explode(',', $city_zip);
+
+                  // City is the first part.
+                  $address_array['locality'] = trim($city_zip_parts[0]);
+                }
+
+                // This line is all text...
+                else {
+
+                  // Test for room indicators.
+                  $is_room = FALSE;
+                  foreach ($room_indicators as $term) {
+                    if (!$is_room && strstr(strtolower($line), $term)) {
+                      $is_room = TRUE;
+                      $room_info[] = trim($line);
+                    }
+                  }
+
+                  // If not room, must be org name?
+                  if (!$is_room) {
+                    $address_array['organisation_name'] = $line;
+                  }
+                }
+              }
+
+              // Save the complete address.
+              $node->field_meeting_location_address[$lang]['0'] = $address_array;
+            }
+
+
+            // Take all the room info and create room text.
+            if (!empty($room_info) && empty($node->field_meeting_room[$lang][0]['value'])) {
+              $room_info = array_unique($room_info);
+              $node->field_meeting_room[$lang][0]['value'] = implode(' - ', $room_info);
+            }
+
+            // Remove 'The' from the front of the room name.
+            if (property_exists($node, 'field_meeting_room') &&
+              substr($node->field_meeting_room[$lang][0]['value'], 0, 4) == 'The ') {
+              $room = trim($node->field_meeting_room[$lang][0]['value']);
+              $node->field_meeting_room[$lang][0]['value'] = substr($room, 4);
+            }
+
+            // If there's a room, but no address, set address to Beale.
+            if (!empty($node->field_meeting_room[$lang]) &&
+                 empty($node->field_meeting_location_address[$lang])) {
+              // Set Beale location.
+              $beale = TRUE;
+            }
+            // If there's a room, and an address with no street & city, set to Beale.
+            elseif (!empty($node->field_meeting_room[$lang])
+                && !empty($node->field_meeting_location_address[$lang])
+                && empty($node->field_meeting_location_address[$lang][0]['thoroughfare'])
+                && empty($node->field_meeting_location_address[$lang][0]['locality']) ) {
+              // Set Beale location.
+              $beale = TRUE;
+            }
+          }
+
+          // No provided location.
+          else {
+            // Get known meetings.
+            $non_beale_meetings = mtc_feeds_get_known_meetings('non_beale_meetings');
+
+            if (!in_array($group, $non_beale_meetings)) {
+              // Set Beale location.
+              $beale = TRUE;
+            }
+          }
+        }
+      }
+    }
+
+    if ($beale) {
+      // Set Beale location.
+      $node->field_meeting_location_address[$lang]['0'] = array(
+        'thoroughfare' => '375 Beale Street',
+        'premise' => '',
+        'dependent_locality' => '',
+        'locality' => 'San Francisco',
+        'administrative_area' => 'CA',
+        'postal_code' => '94105',
+        'country' => 'US',
+        'organisation_name' => 'Bay Area Metro Center',
+      );
+    }
+
+    // Get other known meetings.
+    $no_meeting_rooms = mtc_feeds_get_known_meetings('no_meeting_rooms');
+    $special_meeting_rooms = mtc_feeds_get_known_meetings('special_meeting_rooms');
+
+    // Update meeting ROOM.
+    if (isset($node->field_meeting_location_address[$lang]) &&
+      ($node->field_meeting_location_address[$lang][0]['thoroughfare'] == '375 Beale Street')
+      && empty($node->field_meeting_room[$lang][0]) && !in_array($group, $no_meeting_rooms)) {
+
+      // Let's see what's in the location field.
+      //dpm('location from Granicus:');
+      //dpm($node->field_meeting_location);
+
+      // Set the meeting room to Board Room, First Floor, unless otherwise specified.
+      if (isset($special_meeting_rooms[$group])) {
+        $node->field_meeting_room[$lang][0]['value'] = $special_meeting_rooms[$group];
+      }
+      else {
+        $node->field_meeting_room[$lang][0]['value'] = 'Board Room, First Floor';
+      }
+    }
+
+    // Update ADMIN info based on meeting name.
+    if (empty($node->field_admin_name[$lang][0]) || empty($node->field_admin_email[$lang][0])) {
+      if (!empty($node->field_meeting_name[$lang][0]['value'])) {
+        $contacts = mtc_feeds_get_meeting_contacts();
+        foreach ($contacts as $key => $group_info) {
+          if ($group && strstr(strtolower($group), strtolower($key))) {
+            if (empty($node->field_admin_name[$lang][0])) {
+              $node->field_admin_name[$lang][0]['value'] = $contacts[$key]['name'];
+            }
+            if (empty($node->field_admin_email[$lang][0])) {
+              $node->field_admin_email[$lang][0]['email'] = $contacts[$key]['email'];
+            }
+          }
+        }
+      }
+    }
+
+    // Remove the ?? from Clipper meeting names, replace with ®.
+    if (isset($node->title) && strstr($node->title, '??')) {
+      $node->title = str_replace('??', '®', $node->title);
+    }
+  }
+}
+
+/**
+ * Helper function to return all known meetings and their locations.
+ *
+ * @param  $type
+ *   Type of known meeting. Can be one of the following:
+ *   - non_beale_meetings
+ *   - no_meeting_rooms
+ *
+ * @todo build  UI for this and save these in the db?
+ */
+function mtc_feeds_get_known_meetings($type) {
+  $known_meetings = array(
+    // Not at Beale.
+    'non_beale_meetings' => array(
+      'Clipper Executive Board',
+      'Clipper® Executive Board',
+      'Clipper?? Executive Board',
+    ),
+    // At Beale, no conference room.
+    'no_meeting_rooms' => array(
+      'Bay Area Partnership Board',
+      'Clipper Steering Committee',
+      'Clipper® Steering Committee',
+      'Clipper?? Steering Committee',
+      'Joint Partnership Working Group',
+      'Joint Partnership Working Group (Local Streets & Roads and Programming & Delivery Working Group)',
+      'Local Streets and Roads Working Group',
+      'Partnership Transit Coordination Committee',
+      'Partnership Transit Coordination Committee (PTCC)',
+      'Plan Bay Area 2040 Performance Working Group',
+      'Programming & Delivery Working Group',
+      'Programming & Delivery Working Group (PDWG)',
+      'Regional Means-Based Transit Fare Pricing Study',
+      'Regional Prosperity Plan Steering Committee',
+      'Transit Finance Working Group',
+    ),
+    // At Beale, special conference room.
+    'special_meeting_rooms' => array(
+      'Active Transportation Working Group' => 'CR-8102 Golden Gate',
+      'Air Quality Conformity Task Force' => 'CR-7301 Mount Diablo',
+      'Arterial Operations Committee' => 'Ohlone, First Floor',
+      'Partnership Technical Advisory Committee' => 'Yerba Buena, First Floor',
+      'Partnership Technical Advisory Committee (PTAC)' => 'Yerba Buena, First Floor',
+      'Regional Advisory Working Group' => 'Yerba Buena, First Floor',
+      'Regional Advisory Working Group (RAWG)' => 'Yerba Buena, First Floor',
+      'Regional Equity Working Group' => 'CR-8102 Golden Gate',
+      'Regional Equity Working Group (REWG)' => 'CR-8102 Golden Gate',
+    ),
+  );
+
+  if (isset($type)) {
+    return $known_meetings[$type];
+  }
+
+  return $known_meetings;
+}
+
+
+/**
+ * Helper function to return all meeting contacts.
+ *
+ * @todo build  UI for this and save these in the db?
+ */
+function mtc_feeds_get_meeting_contacts() {
+  $contacts = array(
+    'Active Transportation Working Group' => array(
+      'name' => 'Megan Espiritu',
+      'email' => 'mmagill@bayareametro.gov',
+    ),
+    'Air Quality Conformity Task Force' => array(
+      'name' => 'Megan Espiritu',
+      'email' => 'mlespiritu@bayareametro.gov',
+    ),
+    'Arterial Operations Committee' => array(
+      'name' => 'Jay Stagi',
+      'email' => 'jstagi@bayareametro.gov',
+    ),
+    'Bay Area Partnership' => array(
+      'name' => 'Beba Jimenez',
+      'email' => 'bjimenez@bayareametro.gov',
+    ),
+    'Bay Area Regional Collaborative' => array(
+      'name' => 'Vijay Kesavan',
+      'email' => 'vkesavan@bayareametro.gov',
+    ),
+    'Bay Area Toll Authority' => array(
+      'name' => 'Rosy Leyva',
+      'email' => 'rleyva@bayareametro.gov',
+    ),
+    'Clipper Executive Board' => array(
+      'name' => 'Martha Silver',
+      'email' => 'msilver@bayareametro.gov',
+    ),
+    'Clipper?? Executive Board' => array(
+      'name' => 'Martha Silver',
+      'email' => 'msilver@bayareametro.gov',
+    ),
+    'Equity and Access Subcommittee' => array(
+      'name' => 'Martha Silver',
+      'email' => 'msilver@bayareametro.gov',
+    ),
+    'Joint MTC Planning Committee with the ABAG Administrative Committee' => array(
+      'name' => 'Martha Silver',
+      'email' => 'msilver@bayareametro.gov',
+    ),
+    'Local Streets & Roads Working Group' => array(
+      'name' => 'Marcella Aranda',
+      'email' => 'maranda@bayareametro.gov',
+    ),
+    'Partnership Technical Advisory Committee' => array(
+      'name' => 'Marcella Aranda',
+      'email' => 'maranda@bayareametro.gov',
+    ),
+    'Programming and Allocations Committee' => array(
+      'name' => 'Kimberly Ward',
+      'email' => 'kward@bayareametro.gov',
+    ),
+    'Regional Advisory Working Group' => array(
+      'name' => 'Martha Silver',
+      'email' => 'msilver@bayareametro.gov',
+    ),
+    'Regional Equity Working Group' => array(
+      'name' => 'Megan Espiritu',
+      'email' => 'mlespiritu@bayareametro.gov',
+    ),
+    'Regional Airport Planning Committee' => array(
+      'name' => 'Megan Espiritu',
+      'email' => 'mlespiritu@bayareametro.gov',
+    ),
+    'Regional Prosperity Plan Steering Committee' => array(
+      'name' => 'Megan Espiritu',
+      'email' => 'mlespiritu@bayareametro.gov',
+    ),
+    'Transit Finance Working Group' => array(
+      'name' => 'Theresa Hannon',
+      'email' => 'thannon@bayareametro.gov',
+    ),
+    'Joint Partnership Local Streets and Roads/Programming and Delivery Working Group' => array(
+      'name' => 'Marcella Aranda',
+      'email' => 'maranda@bayareametro.gov',
+    ),
+    'Local Streets and Roads Working Group' => array(
+      'name' => 'Marcella Aranda',
+      'email' => 'maranda@bayareametro.gov',
+    ),
+    'Partnership Programming and Delivery Working Group' => array(
+      'name' => 'Marcella Aranda',
+      'email' => 'maranda@bayareametro.gov',
+    ),
+    'Plan Bay Area Performance Working Group' => array(
+      'name' => 'Megan Espiritu',
+      'email' => 'mlespiritu@bayareametro.gov',
+    ),
+    'Policy Advisory Council' => array(
+      'name' => 'Martha Silver',
+      'email' => 'msilver@bayareametro.gov',
+    ),
+    'Service Authority for Freeways and Expressways' => array(
+      'name' => 'Rosy Leyva',
+      'email' => 'rleyva@bayareametro.gov',
+    ),
+  );
+
+  return $contacts;
+}

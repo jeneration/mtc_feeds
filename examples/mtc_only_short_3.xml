@@ -1,0 +1,56 @@
+<Events>
+	<Event>
+		<ID>4332</ID>
+		<UID>EF2853FC-37CA-4DE1-B695-E412E9E449F3</UID>
+		<Name>Regional Advisory Working Group</Name>
+		<StartTime>2019-01-08 09:30:00</StartTime>
+		<Location>Yerba Buena - 1st Floor</Location>
+		<LastModified>2018-11-29 17:24:03</LastModified>
+		<ContactEmail>msilver@bayareametro.gov</ContactEmail>
+		<ContactName>Martha Silver</ContactName>
+		<MinutesFileGranicus>http://mtc.legistar1.com/mtc/meetings/2019/1/4332_M_Regional_Advisory_Working_Group_19-01-08_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2019/1/4332_A_Regional_Advisory_Working_Group_19-01-08_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2019-01-04 15:09:57</AgendaPostedDate>
+		<GranicusLastModified>2019-01-08 11:04:00</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="5005" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4333</ID>
+		<UID>FE69A183-015C-479E-9134-1FC20E41820D</UID>
+		<Name>Policy Advisory Council</Name>
+		<StartTime>2019-01-09 13:30:00</StartTime>
+		<Location>Yerba Buena - 1st Floor</Location>
+		<LastModified>2018-11-29 17:24:20</LastModified>
+		<ContactEmail>msilver@bayareametro.gov</ContactEmail>
+		<ContactName>Martha Silver</ContactName>
+		<MinutesFileGranicus>http://mtc.legistar1.com/mtc/meetings/2019/1/4333_M_Policy_Advisory_Council_19-01-09_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2019/1/4333_A_Policy_Advisory_Council_19-01-09_Standing_Committee.pdf</AgendaFile>
+		<AgendaPostedDate>2019-01-04 15:37:43</AgendaPostedDate>
+		<GranicusLastModified>2019-01-09 15:20:33</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="5019" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4334</ID>
+		<UID>BA0073C8-A4F6-45F8-AA08-8E6A1C04F38E</UID>
+		<Name>Operations Committee</Name>
+		<StartTime>2019-01-11 09:35:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2018-11-29 17:24:32</LastModified>
+		<ContactEmail>msilver@bayareametro.gov</ContactEmail>
+		<ContactName>Martha Silver</ContactName>
+		<MinutesFileGranicus>http://mtc.legistar1.com/mtc/meetings/2019/1/4334_M_Operations_Committee_19-01-11_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2019/1/4334_A_Operations_Committee_19-01-11_Standing_Committee.pdf</AgendaFile>
+		<AgendaPostedDate>2019-01-08 07:19:09</AgendaPostedDate>
+		<GranicusLastModified>2019-01-11 11:20:44</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="5034" />
+		</Clips>
+	</Event>
+</Events>
