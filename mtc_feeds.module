@@ -198,8 +198,16 @@ function mtc_feeds_node_presave($node) {
                   // Explode on comma.
                   $city_zip_parts = explode(',', $city_zip);
 
-                  // City is the first part.
-                  $address_array['locality'] = trim($city_zip_parts[0]);
+                  if (count($city_zip_parts) == 3) {
+                    // Address is the first part.
+                    $address_array['thoroughfare'] = trim($city_zip_parts[0]);
+                    // City is the second part.
+                    $address_array['locality'] = trim($city_zip_parts[1]);
+                  }
+                  elseif (count($city_zip_parts) == 2) {
+                    // City is the first part.
+                    $address_array['locality'] = trim($city_zip_parts[0]);
+                  }
                 }
 
                 // This line is all text...
