@@ -1,0 +1,283 @@
+<Events>
+	<Event>
+		<ID>4365</ID>
+		<UID>0843DD55-19FD-489E-B111-CE49917DB5E3</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2019-02-15 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2019-06-25 20:56:36</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2019/2/4365_M_Bay_Area_Regional_Collaborative_19-02-15_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2019/2/4365_A_Bay_Area_Regional_Collaborative_19-02-15_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2019-02-15 14:01:23</AgendaPostedDate>
+		<GranicusLastModified>2019-02-15 14:01:23</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="5160" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4409</ID>
+		<UID>C0428B14-3870-485F-90B3-44BA3255D3C9</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2019-04-19 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2019-06-25 21:05:59</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2019/4/4409_M_Bay_Area_Regional_Collaborative_19-04-19_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2019/4/4409_A_Bay_Area_Regional_Collaborative_19-04-19_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2019-04-16 11:22:02</AgendaPostedDate>
+		<GranicusLastModified>2019-04-19 12:21:19</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="5449" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4463</ID>
+		<UID>49AA645A-5067-4B15-8D02-14859C639A6E</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2019-06-21 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2019-09-26 19:02:50</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2019/6/4463_M_Bay_Area_Regional_Collaborative_19-06-21_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2019/6/4463_A_Bay_Area_Regional_Collaborative_19-06-21_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2019-06-25 14:44:16</AgendaPostedDate>
+		<GranicusLastModified>2019-06-25 14:44:16</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="5718" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4498</ID>
+		<UID>F0356B3E-9DEE-4A5F-9C59-3209B860FBAC</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2019-09-20 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2019-09-13 22:19:57</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2019/9/4498_A_Bay_Area_Regional_Collaborative_19-09-20_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2019-09-13 15:19:59</AgendaPostedDate>
+		<GranicusLastModified>2019-09-20 11:41:13</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="6034" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4557</ID>
+		<UID>DBB0262C-A694-4607-978C-D9659CF7CF32</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2019-11-15 09:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2019-11-08 23:24:09</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<AgendaFile>https://mtc.legistar1.com/mtc/meetings/2019/11/4557_A_Bay_Area_Regional_Collaborative_19-11-15_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2019-11-08 15:24:12</AgendaPostedDate>
+		<GranicusLastModified>2019-11-08 15:24:12</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+	</Event>
+	<Event>
+		<ID>4127</ID>
+		<UID>89535165-4B07-4F12-89F4-7659F9F0DD9A</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2018-02-16 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2019-06-25 21:02:56</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2018/2/4127_M_Bay_Area_Regional_Collaborative_18-02-16_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<GranicusLastModified>2018-04-17 11:21:28</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="3969" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4159</ID>
+		<UID>51A5398F-0964-4C05-933D-1C414D7DCB85</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2018-04-20 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2018-04-03 20:08:21</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2018/4/4159_M_Bay_Area_Regional_Collaborative_18-04-20_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2018/4/4159_A_Bay_Area_Regional_Collaborative_18-04-20_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2018-04-17 16:55:13</AgendaPostedDate>
+		<GranicusLastModified>2018-04-20 11:56:53</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="3987" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4171</ID>
+		<UID>470C4680-3732-46EB-8593-605BDEC812E7</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2018-06-15 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2019-06-24 23:44:51</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2018/6/4171_M_Bay_Area_Regional_Collaborative_18-06-15_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2018/6/4171_A_Bay_Area_Regional_Collaborative_18-06-15_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2018-06-08 15:09:54</AgendaPostedDate>
+		<GranicusLastModified>2018-06-15 12:12:00</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="4223" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4238</ID>
+		<UID>FA009CA0-4DA2-42A9-A33D-6ABA8CFBC2D5</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2018-09-21 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2018-07-26 21:59:24</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2018/9/4238_M_Bay_Area_Regional_Collaborative_18-09-21_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2018/9/4238_A_Bay_Area_Regional_Collaborative_18-09-21_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2018-09-17 16:14:21</AgendaPostedDate>
+		<GranicusLastModified>2018-09-21 12:20:48</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="4590" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4281</ID>
+		<UID>E504068E-9EBA-4EAC-AC94-24667D9AC021</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2018-11-16 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2019-06-24 23:42:09</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2018/11/4281_M_Bay_Area_Regional_Collaborative_18-11-16_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2018/11/4281_A_Bay_Area_Regional_Collaborative_18-11-16_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2018-11-13 17:07:20</AgendaPostedDate>
+		<GranicusLastModified>2018-11-16 12:16:32</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="4829" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>3894</ID>
+		<UID>4BE17E2E-3C11-4A3A-B0FC-BF26286E97E8</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2017-02-17 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2016-10-10 19:44:05</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2017/2/3894_M_Bay_Area_Regional_Collaborative_17-02-17_Meeting_Minutes_3.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2017/2/3894_A_Bay_Area_Regional_Collaborative_17-02-17_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2017-02-14 13:24:15</AgendaPostedDate>
+		<GranicusLastModified>2017-02-17 12:18:44</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="2260" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>3983</ID>
+		<UID>95182955-8BEA-42B1-9ABE-3882F9B9BF0D</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2017-04-21 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2017-04-11 18:10:25</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2017/4/3983_M_Bay_Area_Regional_Collaborative_17-04-21_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2017/4/3983_A_Bay_Area_Regional_Collaborative_17-04-21_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2017-04-21 09:44:52</AgendaPostedDate>
+		<GranicusLastModified>2017-04-21 12:01:52</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="2544" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>3997</ID>
+		<UID>31662933-68C5-4DF2-BA19-9AAF8A0468FE</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2017-06-16 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2017-05-16 17:38:04</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2017/6/3997_M_Bay_Area_Regional_Collaborative_17-06-16_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2017/6/3997_A_Bay_Area_Regional_Collaborative_17-06-16_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2017-06-16 10:33:45</AgendaPostedDate>
+		<GranicusLastModified>2017-06-16 12:11:43</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="2752" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>3998</ID>
+		<UID>332C0549-F9E8-4B60-B458-0116D1C15596</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2017-09-15 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2017-05-16 17:45:32</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2017/9/3998_M_Bay_Area_Regional_Collaborative_17-09-15_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2017/9/3998_A_Bay_Area_Regional_Collaborative_17-09-15_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2017-09-13 09:08:03</AgendaPostedDate>
+		<GranicusLastModified>2017-09-15 12:06:02</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="3054" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>4076</ID>
+		<UID>18B6F9CA-6316-4F16-8BD6-86E25646E23A</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2017-11-17 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2017-11-02 18:21:08</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2017/11/4076_M_Bay_Area_Regional_Collaborative_17-11-17_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2017/11/4076_A_Bay_Area_Regional_Collaborative_17-11-17_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2018-01-31 13:51:03</AgendaPostedDate>
+		<GranicusLastModified>2018-01-31 13:51:03</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="3331" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>3893</ID>
+		<UID>29BB597A-CA94-48E3-8A85-FF95AE36B0B9</UID>
+		<Name>Bay Area Regional Collaborative</Name>
+		<StartTime>2016-11-18 10:00:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2016-10-10 19:42:26</LastModified>
+		<ContactEmail />
+		<ContactName />
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2016/11/3893_M_Bay_Area_Regional_Collaborative_16-11-18_Meeting_Minutes_3.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2016/11/3893_A_Bay_Area_Regional_Collaborative_16-11-18_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2016-11-16 14:40:54</AgendaPostedDate>
+		<GranicusLastModified>2016-11-18 11:44:53</GranicusLastModified>
+		<GranicusArchiveStatus>Pending</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="1914" />
+		</Clips>
+	</Event>
+	</Events>
