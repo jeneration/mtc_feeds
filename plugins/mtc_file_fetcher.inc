@@ -91,18 +91,13 @@ function feeds_tamper_mtc_file_fetcher_callback($result, $item_key, $element_key
       if ($headers && strstr($headers[0], '200')) {
         $status_code = 200;
       }
+      elseif ($headers && strstr($headers[0], '404')) {
+        $status_code = 404;
+      }
 
       // Check to see if the file is already in the local filesystem.
       if (file_exists($expected_uri)) {
-
-        // Make sure remote file URL does not 404.
-        if ($status_code == 404) {
-          watchdog('feeds_tamper_mtc_file_fetcher',
-            'FAILURE: Remote File URL %field returned a 404.',
-            array('%field' => $field), WATCHDOG_WARNING);
-        }
-        elseif ($status_code == 200) {
-
+        if ($status_code == 200) {
           // Compare file sizes to see if they are different.
           $local_size = @filesize($expected_uri);
           $remote_size = 0;
@@ -125,18 +120,23 @@ function feeds_tamper_mtc_file_fetcher_callback($result, $item_key, $element_key
             }
           }
         }
+        elseif ($status_code == 404) {
+          // Log if remote file URL is 404.
+          watchdog('feeds_tamper_mtc_file_fetcher',
+            'FAILURE: Remote File URL %field returned a 404.',
+            array('%field' => $field), WATCHDOG_WARNING);
+        }
       }
 
       // Check to see if the file needs to be downloaded.
       if (!file_exists($expected_uri) || $redownload) {
 
+        // Set strings for all logging below.
         $strings = array(
           '%field' => $field,
           '%expected_uri' => $expected_uri,
           '!source' => l(basename($field), $field),
         );
-
-        // Remote file already exists.
         if ($debug) {
           drupal_set_message(t('Remote File %field needs to be downloaded to %expected_uri.', $strings));
         }
