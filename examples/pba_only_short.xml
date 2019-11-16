@@ -1,0 +1,56 @@
+<Events>
+	<Event>
+		<ID>3868</ID>
+		<UID>63C7B992-0638-4F49-A5AC-261B24FDE5EC</UID>
+		<Name>Metropolitan Transportation Commission</Name>
+		<StartTime>2016-09-28 09:35:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2016-09-01 18:46:24</LastModified>
+		<ContactEmail>rleyva@bayareametro.gov</ContactEmail>
+		<ContactName>Rosy Leyva</ContactName>
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2016/9/3868_M_Metropolitan_Transportation_Commission_16-09-28_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2016/9/3868_A_Metropolitan_Transportation_Commission_16-09-28_MTC_-_SAFE.pdf</AgendaFile>
+		<AgendaPostedDate>2016-09-28 08:54:27</AgendaPostedDate>
+		<GranicusLastModified>2016-09-28 12:19:12</GranicusLastModified>
+		<GranicusArchiveStatus>Public</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="1699" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>3870</ID>
+		<UID>4EA8B205-101C-4DAB-9C4C-9AD742B87ECC</UID>
+		<Name>Policy Advisory Council</Name>
+		<StartTime>2016-10-12 13:30:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2016-09-07 18:37:49</LastModified>
+		<ContactEmail>msilver@bayareametro.gov</ContactEmail>
+		<ContactName>Martha Silver</ContactName>
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2016/10/3870_M_Policy_Advisory_Council_16-10-12_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2016/10/3870_A_Policy_Advisory_Council_16-10-12_Standing_Committee.pdf</AgendaFile>
+		<AgendaPostedDate>2016-10-06 09:44:09</AgendaPostedDate>
+		<GranicusLastModified>2016-10-12 15:07:19</GranicusLastModified>
+		<GranicusArchiveStatus>Pending</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="1748" />
+		</Clips>
+	</Event>
+	<Event>
+		<ID>3873</ID>
+		<UID>DA153052-21F2-4EC8-A36C-E43B39EAD41F</UID>
+		<Name>Joint MTC Planning Committee with the ABAG Administrative Committee</Name>
+		<StartTime>2016-10-14 09:40:00</StartTime>
+		<Location>Board Room - 1st Floor</Location>
+		<LastModified>2016-09-07 21:37:48</LastModified>
+		<ContactEmail>msilver@bayareametro.gov</ContactEmail>
+		<ContactName>Martha Silver</ContactName>
+		<MinutesFileGranicus>https://mtc.legistar1.com/mtc/meetings/2016/10/3873_M_Joint_MTC_Planning_Committee_with_the_ABAG_Administrative_Committee_16-10-14_Meeting_Minutes.pdf</MinutesFileGranicus>
+		<AgendaFile>http://mtc.legistar1.com/mtc/meetings/2016/10/3873_A_Joint_MTC_Planning_Committee_with_the_ABAG_Administrative_Committee_16-10-14_Generic.pdf</AgendaFile>
+		<AgendaPostedDate>2016-10-14 08:48:33</AgendaPostedDate>
+		<GranicusLastModified>2016-10-14 11:45:50</GranicusLastModified>
+		<GranicusArchiveStatus>Pending</GranicusArchiveStatus>
+		<Clips>
+			<Clip ID="1762" />
+		</Clips>
+	</Event>
+</Events>
