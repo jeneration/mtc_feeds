@@ -50,7 +50,6 @@ function mtc_feeds_node_presave($node) {
       // Set the meeting address.
       mtc_feeds_set_address($node);
     }
-    dpm('hai');
 
     // Get the group from the meeting name.
     $group = trim($node->field_meeting_name[$lang][0]['value']);
