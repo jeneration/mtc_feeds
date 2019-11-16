@@ -75,7 +75,9 @@ function mtc_feeds_node_presave($node) {
     // Update ADMIN info based on meeting name.
     if (empty($node->field_admin_name[$lang][0]) || empty($node->field_admin_email[$lang][0])) {
       if (!empty($node->field_meeting_name[$lang][0]['value'])) {
+        module_load_include('inc', 'mtc_feeds', 'mtc_feeds_contacts');
         $contacts = mtc_feeds_get_meeting_contacts();
+
         if (!empty($contacts) && is_array($contacts)) {
           foreach ($contacts as $key => $group_info) {
 
@@ -110,6 +112,7 @@ function mtc_feeds_node_presave($node) {
  * @see mtc_feeds_node_presave()
  */
 function mtc_feeds_set_address(&$node){
+  $beale = FALSE;
   $lang = $node->language; // Nice shorthand.
 
   // Get the group from the meeting name.
@@ -161,7 +164,7 @@ function mtc_feeds_set_address(&$node){
   else {
 
     // Check for a provided location.
-    if (!empty($node->field_meeting_location[$lang]) && $author_is_importer) {
+    if (!empty($node->field_meeting_location[$lang])) {
 
       // If the location field is multiple lines, it's an address.
       if (count($loc) > 1) {
@@ -389,15 +392,4 @@ function mtc_feeds_get_known_meetings($type) {
   }
 
   return $known_meetings;
-}
-
-
-/**
- * Helper function to return all meeting contacts.
- *
- * @todo build  UI for this and save these in the db
- */
-function mtc_feeds_get_meeting_contacts() {
-  module_load_include('inc', 'mtc_feeds', 'mtc_feeds_contacts');
-  return $mtc_meeting_contacts;
 }
